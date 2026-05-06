@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <title> </title>
+
+<style>
+
+    body {
+      margin: 0;
+      padding: 0px;
+      padding-top: 10px;
+      padding-left: 20px;
+      background: #2e6aa6;
+      color: white;
+      border: 0 px;
+	width: 340px;
+	height: 620px;
+      
+    }
+    button {
+      background-color: blue;
+      border-radius: 25px;
+      border: 2px solid white;
+      color: white;
+      padding: 10px;
+      margin: 0px;
+      padding-top: 0px;
+}
+
+    #buttFill {
+      background-color: transparent;
+      border: 0px ;
+      cursor: grab;
+      padding: 0px;
+}
+    #plusC {
+      background-color: orange;
+      border-radius: 25px;
+      border: 1px solid yellow;
+      cursor: grab;
+      color: white;
+      padding: 5px;
+      height: 35px;
+      width: 35px;
+
+}
+    #minusC {
+      background-color: orange;
+      border-radius: 25px;
+      border: 1px solid yellow;
+      cursor: grab;
+      color: white;
+      padding: 5px;
+      height: 35px;
+      width: 35px;
+
+}    #displayC {
+      background-color: orange;
+      border-radius: 25px;
+      border: 1px solid yellow;
+      color: white;
+      padding: 5px;
+      height: 35px;
+      width: 35px;
+      font-family: "Times New Roman", Georgia, sans-serif;
+
+}
+    #plusP {
+      background-color: grey;
+      border-radius: 25px;
+      border: 1px solid white;
+      cursor: grab;
+      color: white;
+      padding: 5px;
+      height: 35px;
+      width: 35px;
+
+}
+    #minusP{
+      background-color: grey;
+      border-radius: 25px;
+      border: 1px solid white;
+      cursor: grab;
+      color: white;
+      padding: 5px;
+      height: 35px;
+      width: 35px;
+
+}
+    #displayP{
+      background-color: grey;
+      border-radius: 25px;
+      border: 1px solid white;
+      color: white;
+      padding: 5px;
+      height: 35px;
+      width: 35px;
+      font-family: "Times New Roman", Georgia, sans-serif;
+}
+    #score {
+      background-color: #28816e;
+      border-radius: 25px;
+      border: 2px solid #00ff83;
+      color: white;
+      padding: 5px;
+      margin-top: 0px;
+      margin-left: 40px;
+      margin-right: 15px;
+      height: 32px;
+      width: 32px;
+      font-family: "Times New Roman", Georgia, sans-serif;
+      font-size: 15px;
+      float: right;
+}
+
+
+
+</style> 
+<script src="script.js"></script>
+
+  </head>
+  <body>
+
+<button id=buttFill><img src="plus.png" /> </button>
+
+<img id="imgP" src="plateStack.png" style="padding-left: 70px; padding-top: 0px; padding-bottom: 0px;" />
+
+<img id="imgC" src="multicolor.png" style="padding-left: 20px; padding-top: 0px; padding-bottom: 0px;" />
+
+<button id=score></button>
+
+<div id="divP" style = "display: none;">
+
+<button id=plusP>+</button>
+
+<button id=displayP></button>
+
+<button id=minusP>-</button>
+
+</div>
+
+<div id=divC style = "display: none;">
+
+<button id=plusC>+</button>
+
+<button id=displayC></button>
+
+<button id=minusC>-</button>
+
+</div>
+
+
+<canvas id="gameCanvas" width="300" height="582"></canvas>
+
+  </body>
+
+</html>
