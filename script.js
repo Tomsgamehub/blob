@@ -1,4 +1,6 @@
+
 document.addEventListener("DOMContentLoaded", () => {
+
 
 //"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" CONSTS
   
@@ -19,6 +21,13 @@ const imgC = document.getElementById("imgC");
 const divP = document.getElementById("divP");
 const divC = document.getElementById("divC");
 
+const adjustmentButt = document.getElementById("adjustmentButt");
+const menuButt = document.getElementById("menu");
+const setButt = document.getElementById("settButt");
+const divMenu = document.getElementById("divMenu");
+const divSet = document.getElementById("divSet");
+
+
 const score = document.getElementById("score");
 
 
@@ -38,9 +47,16 @@ lockedPlate.src = "lockedPlate.png";
 
 const unlockPlate = new Image();
 unlockPlate.src = "unlockPlate.png"; 
+
+// -----buttons canvas
+
+const buttons = document.getElementById("buttons");
+const buttonsCtx = buttons.getContext("2d");
+
+const plus = new Image();
+plus.src = "plus.png"; 	
+
 	
-
-
 
   const c1 = ["0","0","0","0","0","0","0","0","0","0","0","0"];
   const c2 = ["0","0","0","0","0","0","0","0","0","0","0","0"];
@@ -73,8 +89,47 @@ unlockPlate.src = "unlockPlate.png";
   const c29 = ["0","0","0","0","0","0","0","0","0","0","0","0"];
   const c30 = ["0","0","0","0","0","0","0","0","0","0","0","0"];
 
-
 const c = [null, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, c16, c17, c18, c19, c20, c21, c22, c23, c24, c25, c26, c27, c28, c29, c30];
+
+
+function clear() {
+    c[1] = ["0","0","0","0","0","0","0","0","0","0","0","0"];
+    c[2] = ["0","0","0","0","0","0","0","0","0","0","0","0"];
+    c[3] = ["0","0","0","0","0","0","0","0","0","0","0","0"];
+    c[4] = ["0","0","0","0","0","0","0","0","0","0","0","0"];
+    c[5] = ["0","0","0","0","0","0","0","0","0","0","0","0"];
+    c[6] = ["0","0","0","0","0","0","0","0","0","0","0","0"];
+    c[7] = ["0","0","0","0","0","0","0","0","0","0","0","0"];
+    c[8] = ["0","0","0","0","0","0","0","0","0","0","0","0"];
+    c[9] = ["0","0","0","0","0","0","0","0","0","0","0","0"];
+    c[10] = ["0","0","0","0","0","0","0","0","0","0","0","0"];
+    c[11] = ["0","0","0","0","0","0","0","0","0","0","0","0"];
+    c[12] = ["0","0","0","0","0","0","0","0","0","0","0","0"];
+    c[13] = ["0","0","0","0","0","0","0","0","0","0","0","0"];
+    c[14] = ["0","0","0","0","0","0","0","0","0","0","0","0"];
+    c[15] = ["0","0","0","0","0","0","0","0","0","0","0","0"];
+    c[16] = ["0","0","0","0","0","0","0","0","0","0","0","0"];
+    c[17] = ["0","0","0","0","0","0","0","0","0","0","0","0"];
+    c[18] = ["0","0","0","0","0","0","0","0","0","0","0","0"];
+    c[19] = ["0","0","0","0","0","0","0","0","0","0","0","0"];
+    c[20] = ["0","0","0","0","0","0","0","0","0","0","0","0"];
+    c[21] = ["0","0","0","0","0","0","0","0","0","0","0","0"];
+    c[22] = ["0","0","0","0","0","0","0","0","0","0","0","0"];
+    c[23] = ["0","0","0","0","0","0","0","0","0","0","0","0"];
+    c[24] = ["0","0","0","0","0","0","0","0","0","0","0","0"];
+    c[25] = ["0","0","0","0","0","0","0","0","0","0","0","0"];
+    c[26] = ["0","0","0","0","0","0","0","0","0","0","0","0"];
+    c[27] = ["0","0","0","0","0","0","0","0","0","0","0","0"];
+    c[28] = ["0","0","0","0","0","0","0","0","0","0","0","0"];
+    c[29] = ["0","0","0","0","0","0","0","0","0","0","0","0"];
+    c[30] = ["0","0","0","0","0","0","0","0","0","0","0","0"];
+    showConfirmClearButt();
+    lastColor = 14;
+    lastPlate = 12;
+    score = 0;
+    updatePL();
+    update();
+}
 
 
   const p1 = [1,1,1,1,1,1];
@@ -91,13 +146,88 @@ let lastPlate;
 
 let lastColor = 14;
 
-let showPButts = 0;
 
-let showCButts = 0;
+
+let showButts = 0;
+
+let showAdjustment = 0;
+
+let showConfirmButt = 0;
+
+let showMenuButt = 0;
+
+let showSetButt = 0;
+
+
 
 let points = 0;
 
 score.textContent = 0;
+
+
+
+//"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" STORAGE
+
+function getKeys() {
+	chrome.storage.local.get( "points", (R) => {
+		if (R) {
+		points = R.points;
+		console.log(R.points);
+		score.textContent = points;
+		}
+	});
+	chrome.storage.local.get( "lastPlate", (R) => {
+		if (R) {
+		lastPlate = R.lastPlate;
+		console.log(R.lastPlate);
+		updatePL();
+		}
+	});
+	chrome.storage.local.get( "lastColor", (R) => {
+		if (R) {
+		lastColor = R.lastColor;
+		console.log(R.lastColor);
+		}
+	});
+	chrome.storage.local.get( "C", (R) => {
+		if (R) {
+			let i = 0;
+			do {
+				i+= 1;
+				c[i] = R.C[i];
+			} while (i < 30);
+		update();
+		}
+	});
+}
+
+
+
+
+// .  .  .  .  .  
+
+function setKey() {
+  const S = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+
+	chrome.storage.local.set({ C: ["null", c[1], c[2], c[3], c[4], c[5], c[6], c[7], c[8], c[9], c[10], c[11], c[12], c[13], c[14], c[15], c[16], c[17], c[18], c[19], c[20], c[21], c[22], c[23], c[24], c[25], c[26], c[27], c[28], c[29], c[30] ] });
+     	chrome.storage.local.set({ lastPlate: lastPlate });
+     	chrome.storage.local.set({ lastColor: lastColor });
+     	chrome.storage.local.set({ points: points });
+
+  	chrome.storage.local.get( "C", (r1) => {
+		chrome.storage.local.get( "points", (r2) => {
+				chrome.storage.local.get( "lastPlate", (r3) => {
+						chrome.storage.local.get( "lastColor", (r4) => {
+							console.log("Storage: ", r1, r2, r3, r4);
+							loadingAnimation(2);
+  						});
+  				});
+		});
+	});
+} 
+
+
+
 
 //"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" LOGIC
 
@@ -107,32 +237,56 @@ plate.onload = () => {
   console.log("plate loaded");
   lastPlate = 12;
   clearAll();
-  update();
+
+  getKeys();
+
   canvas.addEventListener("click", (e) => {
     const rect = canvas.getBoundingClientRect();
     const mouseX = e.clientX - rect.left;
     const mouseY = e.clientY - rect.top;
     console.log(mouseX + " " +mouseY);
     mouseDetectX1(mouseX, mouseY);
-});
-window.addEventListener('keydown', function(e) {
-  if (e.code === 'Space') {
-    console.log("spacebar");
-    fillClicked();
-  }
-});
+  });
 
+  buttons.addEventListener("click", () => {
+    console.log("fill button clicked. 'buttons' in html");
+    fillClicked();
+  });
+
+  window.addEventListener('keydown', function(e) {
+    if (e.code === 'Space') {
+      console.log("spacebar");
+      fillClicked();
+    }
+  });
+drawPlus(0);
 };
 
 
 //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: SMALL FUNCTIONS
 //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
+function updatePL() {
+	let i = 0
+	do {
+		i += 1;
+		if (lastPlate < i) {
+  			PL[rowFrom(i)][colFrom(i)] = 0;
+		} else {
+			PL[rowFrom(i)][colFrom(i)] = 1;
+		}
+	} while(i < 30)
+	console.log("-> PL: ", PL[1], PL[2], PL[3], PL[4], PL[5]);
+	update();
+};
+
+
 function update() {
   canvasUpdate();
   displayP.textContent = lastPlate;
   displayC.textContent = lastColor - 1;
 }
+
  // .  .  .  .  .  
 
 
@@ -208,7 +362,7 @@ return c[C][11 - emptys(C)];
 //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: BUTTS
 //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
  
-buttFill.addEventListener("click", (event) => { fillClicked() });
+// buttonsCtx.addEventListener("click", (event) => { fillClicked() });
 
 plusP.addEventListener("click", (event) => { plusPlateClicked() });
 
@@ -218,35 +372,73 @@ plusC.addEventListener("click", (event) => { plusColorClicked() });
 
 minusC.addEventListener("click", (event) => { minusColorClicked() });
 
-imgP.addEventListener("click", (event) => { imgPClicked() });
+menuButt.addEventListener("click", (event) => { menuButtClicked() });
 
-imgC.addEventListener("click", (event) => { imgCClicked() });
+setButt.addEventListener("click", (event) => { setButtClicked() });
+
+adjustmentButt.addEventListener("click", (event) => { adjustmentButtClicked() });
+
+clearButt.addEventListener("click", (event) => { showConfirmClearButt() });
+
+confirmClearButt.addEventListener("click", (event) => { clear() });
 
 //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: BUTT FUNCTIONS
 //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
- 
 
-function imgPClicked() {
-  if (showPButts === 1) {
+
+
+function menuButtClicked() {
+  if (showMenuButt === 1) {
+    divMenu.style = "display: none;";
+    menuButt.style.content = "url(menu.png)";
+    showMenuButt = 0;
+    showSetButt = 0;
+    showButts = 0;
+    divSet.style = "display: none;";
     divP.style = "display: none;";
-    showPButts = 0;
+    divC.style = "display: none;";
+
   } else {
-    divP.style = "display: block;";
-    showPButts = 1;
+    divMenu.style = "display: block;";
+    menuButt.style.content = "url(menuO.png)";
+    showMenuButt = 1;
   }
 }
 
- // .  .  .  .  .  
-
-function imgCClicked() {
-  if (showCButts === 1) {
-    divC.style = "display: none;";
-    showCButts = 0;
+function setButtClicked() {
+  if (showSetButt === 1) {
+    divSet.style = "display: none;";
+    showSetButt = 0;
   } else {
-    divC.style = "display: block;";
-    showCButts = 1;
+    divSet.style = "display: block;";
+    showSetButt = 1;
+  }
+}
+
+
+function showConfirmClearButt() {
+  if (showConfirmButt === 1) {
+    confirmClearDiv.style = "display: none;";
+    showConfirmButt = 0;
+  } else {
+    confirmClearDiv.style = "display: block;";
+    showConfirmButt = 1;
   }
 
+}
+
+
+function adjustmentButtClicked() {
+  console.log("adjustmentButtClicked");
+  if (showButts === 1) {
+    divP.style = "display: none;";
+    divC.style = "display: none;";
+    showButts = 0;
+  } else {
+    divP.style = "display: inline;";
+    divC.style = "display: inline;";
+    showButts = 1;
+  }
 }
 
 // .  .  .  .  .  
@@ -301,8 +493,9 @@ if (lastColor < 5) {
 
 // .  .  .  .  .  
 
-function fillClicked() {
+async function fillClicked() {
   fill(13,5);
+  setKey();
 }
 
 
@@ -436,13 +629,59 @@ function clearTube(T, C) {
 	console.log("points 5 %");
         console.log(lastPlate);
     }
+    setKey();
     update();
 }
 
 // .  .  .  .  . 
 
+//"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" BUTTONS CANVAS
 
-//"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" CANVAS
+function buttonsClear() {
+	buttonsCtx.clearRect(0, 0, 32, 32);
+}
+
+function drawPlus(frame) {
+  buttonsCtx.drawImage( plus, Number(frame * 32), 0, 32, 32, 0, 0, 32, 32);
+  console.log("plus should be drawn");
+}
+
+function test() {
+	drawPlus(0);
+}
+
+function loadingAnimation(N) {
+	animateLoading(N, () => {
+	});
+}
+// .  .  .  .  .  
+function animateLoading(M, onDone) {
+  let s = 0;
+  let T = 0;
+  function animate() {
+    buttonsCtx.clearRect(0, 0, 32, 32);
+    drawPlus(s);
+    s+= 1;
+    if (s < 20) {
+      requestAnimationFrame(animate);
+    } else {
+	T += 1;
+        if (T < M) { 
+		s = 0;
+		requestAnimationFrame(animate);
+	} else {
+		drawPlus(0);
+		if (onDone) onDone();
+	}
+    }
+  } 
+animate();
+}
+
+// .  .  .  .  .  
+
+
+//"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" BIG CANVAS
 //"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
 
 

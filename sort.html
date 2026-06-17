@@ -10,108 +10,192 @@
       margin: 0;
       padding: 0px;
       padding-top: 10px;
-      padding-left: 20px;
+      padding-left: 10px;
       background: #2e6aa6;
       color: white;
       border: 0 px;
-	width: 340px;
+	width: 330px;
 	height: 620px;
+	font-family: monospace, sans-serif;
       
     }
-    button {
-      background-color: blue;
-      border-radius: 25px;
-      border: 2px solid white;
-      color: white;
-      padding: 10px;
-      margin: 0px;
-      padding-top: 0px;
+
+	#menu{
+	float: right; cursor: grab; 
+	content:url("menu.png");
+}
+	#menu:hover{
+	float: right; cursor: grab; 
+	content:url("menuH.png");
 }
 
-    #buttFill {
-      background-color: transparent;
-      border: 0px ;
-      cursor: grab;
-      padding: 0px;
+	#divMenu{
+	float: right; display: none;
 }
+
+	#adjustmentButt{
+	cursor: grab;
+	content:url("adjustment.png");
+}
+	#adjustmentButt:hover{
+	cursor: grab;
+	content:url("adjustmentH.png");
+}
+
+	#settButt{
+	cursor: grab;
+	content:url("settings.png");
+}
+	#settButt:hover{
+	cursor: grab;
+	content:url("settingsH.png");
+}
+	#divC {
+	position: relative; text-align: center; height: 37 px; padding: 5px;
+	color: white; display: none;
+}
+	#divP {
+	position: relative; text-align: center; padding: 5px;
+	color: white; display: none;
+}
+	#divSet {
+	display: none;
+}
+
+
+
+
+
+
     #plusC {
-      background-color: orange;
-      border-radius: 25px;
-      border: 1px solid yellow;
-      cursor: grab;
-      color: white;
-      padding: 5px;
-      height: 35px;
-      width: 35px;
+	cursor: grab; height: 32px; width: 32px; color: white;
+	content:url("colorPlus.png");
+ style: inline-block;
 
 }
     #minusC {
-      background-color: orange;
-      border-radius: 25px;
-      border: 1px solid yellow;
-      cursor: grab;
-      color: white;
-      padding: 5px;
-      height: 35px;
-      width: 35px;
-
-}    #displayC {
-      background-color: orange;
-      border-radius: 25px;
-      border: 1px solid yellow;
-      color: white;
-      padding: 5px;
-      height: 35px;
-      width: 35px;
-      font-family: "Times New Roman", Georgia, sans-serif;
-
+	cursor: grab; height: 32px; width: 32px; color: white;
+	content:url("colorMin.png");
 }
     #plusP {
-      background-color: grey;
-      border-radius: 25px;
-      border: 1px solid white;
-      cursor: grab;
-      color: white;
-      padding: 5px;
-      height: 35px;
-      width: 35px;
-
+	cursor: grab; height: 32px; width: 32px; color: white;
+	content:url("platePlus.png");
 }
     #minusP{
-      background-color: grey;
-      border-radius: 25px;
-      border: 1px solid white;
-      cursor: grab;
-      color: white;
-      padding: 5px;
-      height: 35px;
-      width: 35px;
+	cursor: grab; height: 32px; width: 32px; color: white;
+	content:url("plateMin.png");
+}
+
+
+    #plusC:hover {
+	cursor: grab; height: 32px; width: 32px; color: white;
+	content:url("colorPlusH.png");
+ style: inline-block;
 
 }
-    #displayP{
-      background-color: grey;
+    #minusC:hover {
+	cursor: grab; height: 32px; width: 32px; color: white;
+	content:url("colorMinH.png");
+}
+    #plusP:hover {
+	cursor: grab; height: 32px; width: 32px; color: white;
+	content:url("platePlusH.png");
+}
+    #minusP:hover{
+	cursor: grab; height: 32px; width: 32px; color: white;
+	content:url("plateMinH.png");
+}
+
+
+
+
+
+    #displayP{     
+	 color: white; font-size: 16px; cursor: default;
+	 position: absolute; bottom: 0%; top:-100%; left:0%; right: 0%;
+	 width: 32px;
+}
+    #imgDisplayP{
+	height: 32px; width: 32px;
+	content:url("plateButt.png");
+}
+
+
+    #displayC{
+	font-size: 16px; color: white; cursor: default;
+	position: absolute; bottom: 0%; top:-100%; left:0%; right: 0%;
+	width: 32px;
+}
+    #imgDisplayC{
+	height: 32px; width: 32px;
+	content:url("colorButt.png");
+}
+
+
+
+
+
+
+	#confirmClearDiv {
+	display: none;
+
+}
+    #clearButt{
+      background-color: red;
       border-radius: 25px;
       border: 1px solid white;
       color: white;
       padding: 5px;
+      margin-left: 70px;
       height: 35px;
-      width: 35px;
       font-family: "Times New Roman", Georgia, sans-serif;
 }
+
+    #clearButt:hover{
+      background-color: black;
+      border-radius: 25px;
+      border: 1px solid red;
+      color: white;
+      padding: 5px;
+      margin-left: 70px;
+      height: 35px;
+      font-family: "Times New Roman", Georgia, sans-serif;
+}
+
+    #confirmClearButt {
+      background-color: red;
+      border-radius: 10px;
+      border: 1px solid white;
+      color: white;
+      padding: 5px;
+      margin-left: 200px;
+      font-family: "Times New Roman", Georgia, sans-serif;
+}
+
+
+    #confirmClearButt:hover {
+      background-color: black;
+      border-radius: 10px;
+      border: 1px solid red;
+      color: white;
+      padding: 5px;
+      margin-left: 200px;
+      font-family: monospace, sans-serif;
+}
+
+
     #score {
       background-color: #28816e;
       border-radius: 25px;
       border: 2px solid #00ff83;
       color: white;
       padding: 5px;
-      margin-top: 0px;
-      margin-left: 40px;
-      margin-right: 15px;
       height: 32px;
-      width: 32px;
-      font-family: "Times New Roman", Georgia, sans-serif;
-      font-size: 15px;
-      float: right;
+      width: 40px;
+      font-family: monospace, sans-serif;
+      font-size: 18px;
+	display: inline;
+	margin-left: 113px;
 }
 
 
@@ -122,33 +206,50 @@
   </head>
   <body>
 
-<button id=buttFill><img src="plus.png" /> </button>
+<div id="row1">
+	<div id=score></div>
+	<canvas id="buttons" width="32" height="32" style="float:left;"></canvas>
+	<img id="menu"> </img>
+</div>
 
-<img id="imgP" src="plateStack.png" style="padding-left: 70px; padding-top: 0px; padding-bottom: 0px;" />
+<div id="row2" style="float: right;">
+	<div id="divMenu">
+		<img id="adjustmentButt"></img>
+		<img id="bombButt">
+		<img id="settButt"></img>
+	</div>
+</div>
 
-<img id="imgC" src="multicolor.png" style="padding-left: 20px; padding-top: 0px; padding-bottom: 0px;" />
+<div id="row3" style="float: right; clear: both;">
+	<div id="divC"> 
+		<img id="minusC">    
+		<div style="position: relative; display: inline;"> 
+			<img id="imgDisplayC"></img> 
+			<div id="displayC"></div> 
+		</div>  
+		<img id="plusC"></img> 
+	</div>
 
-<button id=score></button>
+	<div id="divP"> 
+		<img id="minusP">    
+		<div style="position: relative; display: inline;"> 
+			<img id="imgDisplayP"></img> 
+			<div id="displayP"></div> 
+		</div>  
+		<img id="plusP"></img> 
+	</div>
 
-<div id="divP" style = "display: none;">
-
-<button id=plusP>+</button>
-
-<button id=displayP></button>
-
-<button id=minusP>-</button>
+	<div id="divSet">
+		<button id=clearButt>clear all</button>
+		<div id=confirmClearDiv>
+			<button id=confirmClearButt>confirm clear</button>
+		</div> 
+	</div>
 
 </div>
 
-<div id=divC style = "display: none;">
 
-<button id=plusC>+</button>
-
-<button id=displayC></button>
-
-<button id=minusC>-</button>
-
-</div>
+<!--  -->
 
 
 <canvas id="gameCanvas" width="300" height="582"></canvas>
