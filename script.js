@@ -233,14 +233,16 @@ function setKey() {
 
 //------------------------------ ONLOAD
 
-buttons.onload = () => {
-  buttons.addEventListener("click", () => {
-    console.log("fill button clicked. 'buttons' in html");
-    fillClicked();
-  });
-  loadingAnimation(1);
-  
-  }
+window.addEventListener("load", () => {
+    fitGame();
+    window.addEventListener("resize", fitGame);
+    buttons.addEventListener("click", () => {
+        console.log("fill button clicked. 'buttons' in html");
+        fillClicked();
+    });
+    loadingAnimation(1);
+
+});
 
 
 
