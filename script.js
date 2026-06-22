@@ -259,11 +259,6 @@ plate.onload = () => {
     mouseDetectX1(mouseX, mouseY);
   });
 
-  buttons.addEventListener("click", () => {
-    console.log("fill button clicked. 'buttons' in html");
-    fillClicked();
-  });
-
   window.addEventListener('keydown', function(e) {
     if (e.code === 'Space') {
       console.log("spacebar");
