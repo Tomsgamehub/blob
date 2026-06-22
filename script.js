@@ -233,6 +233,17 @@ function setKey() {
 
 //------------------------------ ONLOAD
 
+buttons.onload = () => {
+  buttons.addEventListener("click", () => {
+    console.log("fill button clicked. 'buttons' in html");
+    fillClicked();
+  });
+  loadingAnimation(1);
+  
+  }
+
+
+
 plate.onload = () => {
   console.log("plate loaded");
   lastPlate = 12;
