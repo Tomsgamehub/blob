@@ -259,8 +259,31 @@ plate.onload = () => {
       fillClicked();
     }
   });
+});
 drawPlus(0);
 };
+
+const canvas_one = document.getElementById("gameCanvas");
+const wrapper = document.getElementById("gameWrapper");
+
+function fitGame() {
+
+    const availableWidth = window.innerWidth;
+
+    const availableHeight =
+        window.innerHeight - canvas_one.offsetTop;
+
+    const scale = Math.min(
+        availableWidth / 300,
+        availableHeight / 582
+    );
+
+    wrapper.style.transform = `scale(${scale})`;
+}
+
+window.addEventListener("load", () => {
+    fitGame();
+    window.addEventListener("resize", fitGame);
 
 
 //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: SMALL FUNCTIONS
