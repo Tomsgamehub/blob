@@ -169,27 +169,25 @@ score.textContent = 0;
 //"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" STORAGE
 
 function getKeys() {
-	chrome.storage.local.get( "points", (R) => {
+	let R;
+	R = localStorage.getItem("points");
 		if (R) {
 		points = R.points;
 		console.log(R.points);
 		score.textContent = points;
 		}
-	});
-	chrome.storage.local.get( "lastPlate", (R) => {
+	R = localStorage.getItem("lastPlate");
 		if (R) {
 		lastPlate = R.lastPlate;
 		console.log(R.lastPlate);
 		updatePL();
 		}
-	});
-	chrome.storage.local.get( "lastColor", (R) => {
+	R = localStorage.getItem("lastColor");
 		if (R) {
 		lastColor = R.lastColor;
 		console.log(R.lastColor);
 		}
-	});
-	chrome.storage.local.get( "C", (R) => {
+	R = localStorage.getItem("C");
 		if (R) {
 			let i = 0;
 			do {
@@ -198,10 +196,7 @@ function getKeys() {
 			} while (i < 30);
 		update();
 		}
-	});
 }
-
-
 
 
 // .  .  .  .  .  
@@ -209,12 +204,16 @@ function getKeys() {
 function setKey() {
   const S = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
 
-	chrome.storage.local.set({ C: ["null", c[1], c[2], c[3], c[4], c[5], c[6], c[7], c[8], c[9], c[10], c[11], c[12], c[13], c[14], c[15], c[16], c[17], c[18], c[19], c[20], c[21], c[22], c[23], c[24], c[25], c[26], c[27], c[28], c[29], c[30] ] });
-     	chrome.storage.local.set({ lastPlate: lastPlate });
-     	chrome.storage.local.set({ lastColor: lastColor });
-     	chrome.storage.local.set({ points: points });
+  localStorage.setItem("C", ['null', c[1], c[2], c[3], c[4], c[5], c[6], c[7], c[8], c[9], c[10], c[11], c[12], c[13], c[14], c[15], c[16], c[17], c[18], c[19], c[20], c[21], c[22], c[23], c[24], c[25], c[26], c[27], c[28], c[29], c[30]] );
+  localStorage.setItem("lastPlate", lastPlate);
+  localStorage.setItem("lastColor", lastColor);
+  localStorage.setItem("points", points);
+//	chrome.storage.local.set({ C: ["null", c[1], c[2], c[3], c[4], c[5], c[6], c[7], c[8], c[9], c[10], c[11], c[12], c[13], c[14], c[15], c[16], c[17], c[18], c[19], c[20], c[21], c[22], c[23], c[24], c[25], c[26], c[27], c[28], c[29], c[30] ] });
+//     	chrome.storage.local.set({ lastPlate: lastPlate });
+//     	chrome.storage.local.set({ lastColor: lastColor });
+//     	chrome.storage.local.set({ points: points });
 
-  	chrome.storage.local.get( "C", (r1) => {
+/*  	chrome.storage.local.get( "C", (r1) => {
 		chrome.storage.local.get( "points", (r2) => {
 				chrome.storage.local.get( "lastPlate", (r3) => {
 						chrome.storage.local.get( "lastColor", (r4) => {
@@ -224,6 +223,7 @@ function setKey() {
   				});
 		});
 	});
+	*/
 } 
 
 
