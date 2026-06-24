@@ -188,6 +188,7 @@ function getKeys() {
 		console.log(R.lastColor);
 		}
 	R = localStorage.getItem("C");
+	console.log("1 keys are gotten. C is: ", R);
 		if (R) {
 			let i = 0;
 			do {
@@ -196,7 +197,7 @@ function getKeys() {
 			} while (i < 30);
 		update();
 		}
-		console.log("keys are gotten. C is: ", R);
+		console.log("2 keys are gotten. C is: ", R);
 }
 
 
