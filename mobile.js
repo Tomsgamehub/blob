@@ -3,33 +3,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 //"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" CONSTS
-  
 const buttFill = document.getElementById("buttFill");
-
 const plusP = document.getElementById("plusP");
 const minusP = document.getElementById("minusP");
-
 const plusC = document.getElementById("plusC");
 const minusC = document.getElementById("minusC");
-
 const displayP = document.getElementById("displayP");
 const displayC = document.getElementById("displayC");
-
 const imgP = document.getElementById("imgP");
 const imgC = document.getElementById("imgC");
-
 const divP = document.getElementById("divP");
 const divC = document.getElementById("divC");
-
 const adjustmentButt = document.getElementById("adjustmentButt");
 const menuButt = document.getElementById("menu");
 const setButt = document.getElementById("settButt");
 const divMenu = document.getElementById("divMenu");
 const divSet = document.getElementById("divSet");
-
-
 const score = document.getElementById("score");
-
 
 //------------------------------ Load canvas consts
 
