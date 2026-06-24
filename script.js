@@ -267,7 +267,6 @@ plate.onload = () => {
       fillClicked();
     }
   });
-});
 drawPlus(0);
 };
 
