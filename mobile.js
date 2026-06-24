@@ -192,7 +192,8 @@ function getKeys() {
 			let i = 0;
 			do {
 				i+= 1;
-				c[i] = R.C[i];
+				c[i] = R[i];
+				//c[i] = R.C[i];
 			} while (i < 30);
 		update();
 		}
