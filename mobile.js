@@ -188,7 +188,8 @@ function getKeys() {
 		update();
 		}
 		console.log("2 keys are gotten. C is: ", R);
-		console.log("The const C is: ", C);
+		console.log("The const c is: ", c);
+		cnosole.log("The const C is: ", C);
 		console.log("The const c1 is: ", c1);
 }
 
