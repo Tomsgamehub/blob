@@ -291,7 +291,7 @@ function fitGame() {
 window.addEventListener("load", () => {
     fitGame();
     window.addEventListener("resize", fitGame);
-
+});
 
 //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: SMALL FUNCTIONS
 //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
